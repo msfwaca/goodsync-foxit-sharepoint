@@ -5,7 +5,7 @@
 |---|---|
 | **Document** | Scan-to-Archive Pipeline — Configuration & Operations Manual |
 | **Version** | 0.9 (draft for technical review) |
-| **Owner** | Systems Architect & DevOps Lead, MSF WaCA |
+| **Owner** | Systems Architect, MSF WaCA |
 | **Scope** | Field client workstations → central GoodSync Server (AWS) → Foxit PDF Compressor → Finance SharePoint |
 | **Source baseline** | *OCA Field Accounting Digitilization* (June 2025) — architecture re-platformed from Synology NAS + on-prem Luratech to AWS EC2 + Foxit PDF Compressor |
 | **Status** | Sections marked **[CONFIRM]** must be validated against the live consoles before go-live |
@@ -67,7 +67,7 @@ flowchart TD
 
 | Item | Recommendation |
 |---|---|
-| Instance | Windows Server 2019/2022, compute-optimised or general purpose, sized to the number of **licensed Foxit CPU cores** — do not license more cores than the instance provides, and do not size cores beyond the licence. |
+| Instance | Windows Server 2022, compute-optimised or general purpose, sized to the number of **licensed Foxit CPU cores** — do not license more cores than the instance provides, and do not size cores beyond the licence. |
 | RAM | Minimum 1 GB per licensed core; 2 GB per core recommended; more for very large documents on 64-bit. |
 | Data volume | Dedicated EBS **gp3** volume mounted as `E:` for `\ARCHIVE`. Per the WaCA EBS cost-management policy, gp3 is the default class; provision IOPS only against measured CloudWatch demand, not by assumption. |
 | Prerequisites | .NET Framework 4.x; ABBYY SDK licensing service enabled; sufficient free space in the service account's TEMP for `LT_PDF_Compressor` working files (or redirect it with the `LT_PDFCOMP_TMP` environment variable). |
